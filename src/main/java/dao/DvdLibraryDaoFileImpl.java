@@ -22,20 +22,28 @@ import java.util.Scanner;
  *
  * @author prave
  */
-public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
+public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
 
     Map<String, Dvd> dvdMap = new HashMap<>(); 
     public static final String DVD_FILE = "DvdLibrary.txt";
     private static final String DELIMITER ="::";
     
     @Override
-    public Dvd addDvd(Dvd dvd) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Dvd addDvd(Dvd dvd) throws DVDLibraryExceptions {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        loadDvd();
+        Dvd newDvd = dvdMap.put(dvd.getTitle(), dvd);
+        writeDvd();
+        return newDvd;
     }
 
     @Override
-    public Dvd removeDvd(String title) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Dvd removeDvd(String title) throws DVDLibraryExceptions {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        loadDvd();
+        Dvd removedDvd = dvdMap.remove(title);
+        writeDvd();
+        return removedDvd;
     }
 
     @Override

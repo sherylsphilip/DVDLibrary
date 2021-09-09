@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface DvdLibraryDao {
        
-    Dvd addDvd(Dvd dvd);
+    Dvd addDvd(Dvd dvd) throws DVDLibraryExceptions;
     
-    Dvd removeDvd(String title);
+    Dvd removeDvd(String title) throws DVDLibraryExceptions;
     
     Dvd editDvd(String title, Dvd dvd);
     
