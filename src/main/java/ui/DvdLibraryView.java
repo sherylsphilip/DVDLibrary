@@ -13,8 +13,7 @@ import java.util.List;
  * @author prave
  */
 public class DvdLibraryView {
-    
-    private UserIO io;
+     private UserIO io;
 
     public DvdLibraryView(UserIO io) {
         this.io = io;
@@ -38,7 +37,7 @@ Allow the user to search for a DVD by title
 
         return io.readInt("Please select from the above choices.", 1, 5);
     }
-    
+
     public Dvd getDvdInfo() 
     {
     String title = io.readString("Please enter the title of the DVD:");
@@ -59,8 +58,8 @@ Director's name
 Studio
 User rating 
     */
-    
-    
+
+
     public void displayCreateDVDBanner() {
     io.print("=== Create DVD ===");
 }
@@ -68,7 +67,7 @@ User rating
     io.readString(
             "DVD successfully created.  Please hit enter to continue");
 }
-    
+
     public void displayDVDList(List<Dvd> dvdList) {
     for (Dvd currentDVD : dvdList) {
         this.displayDVD(currentDVD);
@@ -95,7 +94,7 @@ public void displayDVD(Dvd dvd) {
               dvd.getReleaseDate().toString(),
               dvd.getMpaaRating(),
               dvd.getUserRating());
-              
+
         io.print(addressInfo);
     } else {
         io.print("No such DVD.");
@@ -131,9 +130,9 @@ public boolean quit()
 {
     return true;
 }
-   
-    
-    
+
+
+
     /*
     Allow the user to add a DVD to the collection
 Allow the user to remove a DVD from the collection
@@ -142,5 +141,4 @@ Allow the user to list the DVDs in the collection
 Allow the user to display the information for a particular DVD
 Allow the user to search for a DVD by title
     */
-    
 }

@@ -7,8 +7,15 @@ package dao;
 
 /**
  *
- * @author prave
+ * @author Sheryl Philip
  */
 public class DVDLibraryExceptions extends Exception {
     
+    DVDLibraryExceptions(String message){
+        super(message);
+    }
+    
+    DVDLibraryExceptions(String message, Throwable cause){
+        super(message, cause);
+    }
 }
