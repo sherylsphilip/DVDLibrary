@@ -5,6 +5,13 @@
  */
 package main.app;
 
+import controller.DVDController;
+import dao.DvdLibraryDao;
+import dao.DvdLibraryDaoFileImpl;
+import ui.DvdLibraryView;
+import ui.UserIO;
+import ui.UserIOImpl;
+
 /**
  *
  * @author prave
@@ -13,5 +20,11 @@ public class App {
     
     public static void main(String[] args) {
         
+        UserIO io = new UserIOImpl();
+        DvdLibraryView view = new DvdLibraryView(io);        
+        DvdLibraryDao dao = new DvdLibraryDaoFileImpl();
+        
+        DVDController dvdController = new DVDController(view, dao);
+        dvdController.run();
     }
 }

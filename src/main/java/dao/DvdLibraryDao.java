@@ -14,17 +14,17 @@ import java.util.List;
  */
 public interface DvdLibraryDao {
        
-    Dvd addDvd(Dvd dvd);
+    Dvd addDvd(Dvd dvd)throws DVDLibraryExceptions;
     
-    Dvd removeDvd(String title);
+    Dvd removeDvd(String title) throws DVDLibraryExceptions;
     
-    Dvd editDvd(String title, Dvd dvd);
+    Dvd editDvd(String title, Dvd dvd)throws DVDLibraryExceptions ;
     
-    List<Dvd> listDvdCollection();
+    List<Dvd> listDvdCollection() throws DVDLibraryExceptions ;
     
-    Dvd displayDvd(String title);
+    Dvd displayDvd(String title)throws DVDLibraryExceptions ;
     
-    Dvd searchDvd(String title);    
+    Dvd searchDvd(String title)throws DVDLibraryExceptions ;    
     
     
 }

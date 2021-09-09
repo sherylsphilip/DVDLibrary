@@ -35,7 +35,7 @@ Allow the user to search for a DVD by title
         io.print("5. Search DVD");
         io.print("6. QUIT");
 
-        return io.readInt("Please select from the above choices.", 1, 5);
+        return io.readInt("Please select from the above choices.", 1, 6);
     }
 
     public Dvd getDvdInfo() 
@@ -87,7 +87,7 @@ public String getTitle() {
 
 public void displayDVD(Dvd dvd) {
     if (dvd != null) {
-        String addressInfo = String.format("%s\n%s\n%s, %s\n%s   -   n%s",
+        String dvdInfo = String.format("%s\n%s\n%s, %s\n%s   -   n%s",
               dvd.getTitle(),
               dvd.getDirectorName(),
               dvd.getStudio(),
@@ -95,7 +95,7 @@ public void displayDVD(Dvd dvd) {
               dvd.getMpaaRating(),
               dvd.getUserRating());
 
-        io.print(addressInfo);
+        io.print(dvdInfo);
     } else {
         io.print("No such DVD.");
     }
@@ -126,10 +126,6 @@ public void displayErrorMessage(String errorMsg) {
     io.print(errorMsg);
 }
 
-public boolean quit()
-{
-    return true;
-}
 
 
 
@@ -141,4 +137,8 @@ Allow the user to list the DVDs in the collection
 Allow the user to display the information for a particular DVD
 Allow the user to search for a DVD by title
     */
+
+    public Dvd editDvd(String title) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
