@@ -120,11 +120,30 @@ public class DvdLibraryView {
     }
 
     /*
+    displaying dvd edit banner
+     */
+    public void displayEditDvdBanner() {
+        io.print("=== Edit DVD ===");
+    }
+
+    /*
     this method shows that dvd removal success message
      */
     public void displayRemoveResult(Dvd dvdRecord) {
         if (dvdRecord != null) {
             io.print("DVD successfully removed.");
+        } else {
+            io.print("No such DVD.");
+        }
+        io.readString("Please hit enter to continue.");
+    }
+
+    /*
+    this method shows that dvd edit success message
+     */
+    public void displayEditResult(Dvd dvdRecord) {
+        if (dvdRecord != null) {
+            io.print("DVD successfully Edited.");
         } else {
             io.print("No such DVD.");
         }
@@ -154,10 +173,11 @@ public class DvdLibraryView {
     }
 
     /*
-    This method will ask get details from the user to edit dvd details
+    This method will ask get details from the user to edit dvd details if DVD exists
      */
-    public Dvd editDvd(String title) {
-        Dvd dvd = new Dvd(title);
+    public Dvd editDvd(String title, Dvd dvd) {
+        System.out.println("inside edit dvd");
+
         dvd.setReleaseDate(io.readString("Please enter the released date to be edited:"));
         dvd.setMpaaRating(io.readString("Please entern the MPAA's rating  to be edited:"));
         dvd.setDirectorName(io.readString("Please enter the Director  to be edited:"));

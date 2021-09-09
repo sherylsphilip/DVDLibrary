@@ -94,10 +94,15 @@ public class DVDController {
     This method will make calls to view & dao in edit dvd details
      */
     private void editDvdDetails() throws DVDLibraryExceptions {
+        view.displayEditDvdBanner();
         String title = view.getTitle();
-        //Dvd editDvd = dao.searchDvd(title);
-        Dvd editDvd = view.editDvd(title);
-        dao.editDvd(title, editDvd);
+        Dvd dvd = dao.searchDvd(title);
+        if(dvd != null){
+            dvd = view.editDvd(title, dvd);
+            dvd = dao.editDvd(title, dvd);
+        }
+        
+        view.displayEditResult(dvd);
     }
 
     /*
