@@ -22,14 +22,16 @@ import java.util.Scanner;
  *
  * @author prave
  */
-public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
+public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
 
     Map<String, Dvd> dvdMap = new HashMap<>(); 
+    public static final String DVD_FILE = "DvdLibrary.txt";
     private static final String DELIMITER ="::";
     public static final String DVD_FILE = "DvdLibrary.txt";
     
     @Override
     public Dvd addDvd(Dvd dvd) throws DVDLibraryExceptions {
+
         loadDvd();
         Dvd newDvd = dvdMap.put(dvd.getTitle(), dvd);
         writeDvd();
@@ -77,6 +79,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
     marshalling
     unmarshalling
  */       
+
     private Dvd unmarshallDvd(String DvdAsText){
         // studentAsText is expecting a line read in from our file.
         // For example, it might look like this:
@@ -101,6 +104,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
         // Index 4 - studio
         dvdFromFile.setStudio(dvdTokens[4]);
 
+       
         // Index 5 - user rating
         dvdFromFile.setUserRating(dvdTokens[5]);
 
@@ -118,7 +122,9 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
                             new FileReader(DVD_FILE)));
         } catch (FileNotFoundException e) {
             throw new DVDLibraryExceptions(
-                    "-_- Could not load dvd data into memory.", e);
+
+                    "-_- Could not load roster data into memory.", e);
+
         }
         // currentLine holds the most recent line read from the file
         String currentLine;
@@ -157,8 +163,10 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
         // MPAA rating
         dvdAsText += aDvd.getMpaaRating() + DELIMITER;
 
+        
         // director name
         dvdAsText += aDvd.getDirectorName() + DELIMITER;
+        
 
         // studio
         dvdAsText += aDvd.getStudio() + DELIMITER;
@@ -179,7 +187,9 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
             out = new PrintWriter(new FileWriter(DVD_FILE));
         } catch (IOException e) {
             throw new DVDLibraryExceptions(
+
                     "Could not save Dvd data.", e);
+
         }
 
         // Write out the Dvd objects to the DVD file.
