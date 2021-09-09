@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -14,7 +14,7 @@ import java.util.Date;
 public class Dvd {
     
     private String title;
-    private Date releaseDate;
+    private String releaseDate;
     private String mpaaRating;
     private String directorName;
     private String Studio;
@@ -24,7 +24,7 @@ public class Dvd {
         this.title = title;
     }
 
-    public Dvd(String title, Date releaseDate, String mpaaRating, String directorName, String Studio, String userRating) {
+    public Dvd(String title, String releaseDate, String mpaaRating, String directorName, String Studio, String userRating) {
         this.title = title;
         this.releaseDate = releaseDate;
         this.mpaaRating = mpaaRating;
@@ -42,11 +42,11 @@ public class Dvd {
         this.title = title;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
