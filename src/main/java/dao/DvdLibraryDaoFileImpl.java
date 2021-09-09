@@ -20,24 +20,28 @@ import java.util.Scanner;
 
 /**
  *
- * @author prave
+ * @author Sheryl Philip
  */
-public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
+public class DvdLibraryDaoFileImpl implements DvdLibraryDao{
 
     Map<String, Dvd> dvdMap = new HashMap<>(); 
-    public static final String DVD_FILE = "DvdLibrary.txt";
     private static final String DELIMITER ="::";
     public static final String DVD_FILE = "DvdLibrary.txt";
     
+    /*
+    This method will add new dvd data to to the file
+    */
     @Override
     public Dvd addDvd(Dvd dvd) throws DVDLibraryExceptions {
-
         loadDvd();
         Dvd newDvd = dvdMap.put(dvd.getTitle(), dvd);
         writeDvd();
         return newDvd;
     }
-
+    
+    /*
+    This method will remove one dvd detail as per title from the file
+    */
     @Override
     public Dvd removeDvd(String title) throws DVDLibraryExceptions {
         loadDvd();
@@ -45,7 +49,10 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
         writeDvd();
         return removedDvd;
     }
-
+    
+    /*
+    This method will edit the dvd details as per title in the file
+    */
     @Override
     public Dvd editDvd(String title, Dvd dvd)throws DVDLibraryExceptions  {
        loadDvd();
@@ -53,38 +60,43 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
        writeDvd();
        return dvd;
     }
-
+    
+    /*
+    This method will get all the dvd details from the file
+    */
     @Override
     public List<Dvd> listDvdCollection() throws DVDLibraryExceptions {
         loadDvd();
         return new ArrayList(dvdMap.values());
     }
-
+    
+    /*
+    This method will get dvd detail from file as per title
+    */
     @Override
     public Dvd displayDvd(String title)throws DVDLibraryExceptions  {
         loadDvd();
        Dvd dvd = dvdMap.get(title);
        return dvd;
     }
-
+    
+    /*
+    this method will retriev dvd details as per the title
+    */
     @Override
     public Dvd searchDvd(String title) throws DVDLibraryExceptions {
        loadDvd();
        Dvd dvd = dvdMap.get(title);
        return dvd;
     }
+    
     /*
-    loader()
-    write
-    marshalling
-    unmarshalling
- */       
-
+        This method will read each line from the file and split into DVD details
+        DvdAsText- contains each line from file which is in the form        
+        title::release date::MPAA rating::director name::studio::user rating
+    
+    */
     private Dvd unmarshallDvd(String DvdAsText){
-        // studentAsText is expecting a line read in from our file.
-        // For example, it might look like this:
-        // title::release date::MPAA rating::director name::studio::user rating
-
         String[] dvdTokens = DvdAsText.split(DELIMITER);
 
         // Index 0 - title
@@ -104,14 +116,16 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
         // Index 4 - studio
         dvdFromFile.setStudio(dvdTokens[4]);
 
-       
         // Index 5 - user rating
         dvdFromFile.setUserRating(dvdTokens[5]);
 
         // We have now created a dvd! Return it!
         return dvdFromFile;
     }
-
+    
+    /*
+        This method will read data from the file
+    */
     private void loadDvd() throws DVDLibraryExceptions {
         Scanner scanner;
 
@@ -122,16 +136,14 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
                             new FileReader(DVD_FILE)));
         } catch (FileNotFoundException e) {
             throw new DVDLibraryExceptions(
-
-                    "-_- Could not load roster data into memory.", e);
-
+                    "-_- Could not load dvd data into memory.", e);
         }
         // currentLine holds the most recent line read from the file
         String currentLine;
         // currentDvd holds the most recent Dvd unmarshalled
         Dvd currentDvd;
         // Go through DVD_FILE line by line, decoding each line into a 
-        // Dvd object by calling the unmarshallStudent method.
+        // Dvd object by calling the unmarshallDvd method.
         // Process while we have more lines in the file
         while (scanner.hasNextLine()) {
             // get the next line in the file
@@ -146,11 +158,14 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
         // close scanner
         scanner.close();
     }
-
-    private String marshallDvd(Dvd aDvd){
-        // We need to turn a Dvd object into a line of text for our file.
+    
+    /*
+    // This method will turn a Dvd object into a line of text for our file.
         // For example, we need an in memory object to end up like this:
         // title::release date::MPAA rating::director name::studio::user rating
+    */
+    private String marshallDvd(Dvd aDvd){
+        
 
         // Start with the title, since that's supposed to be first.
         String dvdAsText = aDvd.getTitle() + DELIMITER;
@@ -163,10 +178,8 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
         // MPAA rating
         dvdAsText += aDvd.getMpaaRating() + DELIMITER;
 
-        
         // director name
         dvdAsText += aDvd.getDirectorName() + DELIMITER;
-        
 
         // studio
         dvdAsText += aDvd.getStudio() + DELIMITER;
@@ -178,7 +191,9 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
         return dvdAsText;
     }
 
-
+    /*
+    this metod will write the data into file
+    */
     private void writeDvd() throws DVDLibraryExceptions {
 
         PrintWriter out;
@@ -187,9 +202,7 @@ public class DvdLibraryDaoFileImpl implements DvdLibraryDao {
             out = new PrintWriter(new FileWriter(DVD_FILE));
         } catch (IOException e) {
             throw new DVDLibraryExceptions(
-
                     "Could not save Dvd data.", e);
-
         }
 
         // Write out the Dvd objects to the DVD file.

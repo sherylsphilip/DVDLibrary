@@ -7,7 +7,7 @@ package ui;
 
 /**
  *
- * @author prave
+ * @author Sheryl Philip
  */
 public interface UserIO {
     

@@ -9,15 +9,12 @@ import dto.Dvd;
 import java.util.List;
 
 /**
- *
- * @author prave
+ *Interface for DAO 
+ * @author Sheryl Philip
  */
 public interface DvdLibraryDao {
        
-
-    
-
-    Dvd addDvd(Dvd dvd) throws DVDLibraryExceptions;
+    Dvd addDvd(Dvd dvd)throws DVDLibraryExceptions;
     
     Dvd removeDvd(String title) throws DVDLibraryExceptions;
     

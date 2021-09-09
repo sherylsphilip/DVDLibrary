@@ -13,19 +13,25 @@ import ui.DvdLibraryView;
 
 /**
  *
- * @author prave
+ * @author Sheryl Controller Class of DVD Library
  */
 public class DVDController {
 
     private DvdLibraryView view;
     private DvdLibraryDao dao;
 
+    /*
+    DvD Controller which initialises the view & dao
+     */
     public DVDController(DvdLibraryView view, DvdLibraryDao dao) {
         this.view = view;
         this.dao = dao;
 
     }
 
+    /*
+        Main method in controller to make choice as per the user selection
+     */
     public void run() {
         int menuselection = 0;
         boolean continueFlag = true;
@@ -33,29 +39,29 @@ public class DVDController {
             do {
 
                 menuselection = view.printMenuAndGetSelection();
-                switch(menuselection){
+                switch (menuselection) {
                     case 1:
                         createDvd();
-                    break;
+                        break;
                     case 2:
                         removeDvd();
-                    break;
+                        break;
                     case 3:
                         editDvdDetails();
-                    break;
+                        break;
                     case 4:
                         displayAllDvd();
-                    break;
+                        break;
                     case 5:
                         searchDvd();
-                    break;
+                        break;
                     case 6:
                         exitCommand();
                         continueFlag = false;
-                    break;
+                        break;
                     default:
                         defaultMessage();
-                    
+
                 }
 
             } while (continueFlag);
@@ -64,6 +70,9 @@ public class DVDController {
         }
     }
 
+    /*
+        This method will make calls to view & dao in creating dvd details
+     */
     private void createDvd() throws DVDLibraryExceptions {
         view.displayCreateDVDBanner();
         Dvd newdvd = view.getDvdInfo();
@@ -71,38 +80,56 @@ public class DVDController {
         view.displayCreateSuccessBanner();
     }
 
+    /*
+    This method will make calls to view & dao in removing dvd from list
+     */
     private void removeDvd() throws DVDLibraryExceptions {
-       view.displayRemoveDvdBanner();
-       String title = view.getTitle();
-       Dvd removeDvd = dao.removeDvd(title);
-       view.displayRemoveResult(removeDvd);
+        view.displayRemoveDvdBanner();
+        String title = view.getTitle();
+        Dvd removeDvd = dao.removeDvd(title);
+        view.displayRemoveResult(removeDvd);
     }
 
-    //To check if any modifications
-    private void editDvdDetails()throws DVDLibraryExceptions {
+    /*
+    This method will make calls to view & dao in edit dvd details
+     */
+    private void editDvdDetails() throws DVDLibraryExceptions {
         String title = view.getTitle();
+        //Dvd editDvd = dao.searchDvd(title);
         Dvd editDvd = view.editDvd(title);
         dao.editDvd(title, editDvd);
     }
 
-    private void displayAllDvd()throws DVDLibraryExceptions {
+    /*
+    This method will make calls to view & dao to display all dvds
+     */
+    private void displayAllDvd() throws DVDLibraryExceptions {
         view.displayDisplayAllBanner();
         List<Dvd> dvdList = dao.listDvdCollection();
         view.displayDVDList(dvdList);
-       
+
     }
 
-    private void searchDvd() throws DVDLibraryExceptions{
+    /*
+    This method will make calls to view & dao to search dvd by title
+     */
+    private void searchDvd() throws DVDLibraryExceptions {
         String title = view.getTitle();
         Dvd dvd = dao.searchDvd(title);
         view.displayDVD(dvd);
     }
 
+    /*
+    This method will make calls to view to show exit command
+     */
     private void exitCommand() {
         view.displayExitBanner();
-       
+
     }
 
+    /*
+    This method will make calls to view to show default message
+     */
     private void defaultMessage() {
         view.displayUnknownCommandBanner();
     }

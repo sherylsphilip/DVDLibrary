@@ -8,7 +8,7 @@ package dto;
 import java.util.Date;
 
 /**
- *
+ *DVD dto with getters & Setters
  * @author Sheryl
  */
 public class Dvd {
