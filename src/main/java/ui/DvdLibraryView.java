@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package ui;
 
 /**
  *
  * @author prave
  */
-public class DVDController {
+public class DvdLibraryView {
     
-    public void run(){
-        
-        // here call view
-        //dao
-    }
 }

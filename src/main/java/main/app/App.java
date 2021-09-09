@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package main.app;
 
 /**
  *
  * @author prave
  */
-public class DVDController {
+public class App {
     
-    public void run(){
+    public static void main(String[] args) {
         
-        // here call view
-        //dao
     }
 }
