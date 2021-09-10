@@ -65,8 +65,8 @@ public class DVDController {
                 }
 
             } while (continueFlag);
-        } catch (Exception e) {
-
+        } catch (DVDLibraryExceptions e) {
+            view.displayErrorMessage(e.getMessage());
         }
     }
 
