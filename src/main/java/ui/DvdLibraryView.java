@@ -177,11 +177,10 @@ public class DvdLibraryView {
      */
     public Dvd editDvd(String title, Dvd dvd) {
         System.out.println("inside edit dvd");
-
-        dvd.setReleaseDate(io.readString("Please enter the released date to be edited:"));
-        dvd.setMpaaRating(io.readString("Please entern the MPAA's rating  to be edited:"));
         dvd.setDirectorName(io.readString("Please enter the Director  to be edited:"));
+        dvd.setReleaseDate(io.readString("Please enter the released date to be edited:"));
         dvd.setStudio(io.readString("Please enter the studio  to be edited"));
+        dvd.setMpaaRating(io.readString("Please entern the MPAA's rating  to be edited:"));         
         dvd.setUserRating(io.readString("Please enter the user's rating to be edited:"));
         return dvd;
     }
